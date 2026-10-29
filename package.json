@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@ionic/react": "^9.0.10",
+    "@ionic/react-router": "^9.0.10",
+    "ionicons": "^8.1.0",
+    "react-router": "^8.5.1",
+    "react-router-dom": "^7.18.5"
+  }
+}
