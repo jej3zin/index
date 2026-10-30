@@ -1,18 +1,19 @@
-import { lazy, useState } from 'react'
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Index = lazy(() => import("./pages/index/index"));
 
-import { BrowserRouter, Route, Routes} from "react-router-dom";
-
 function App() {
-
   return (
-        <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-            </Routes>
-        </BrowserRouter>
-  )
+    <BrowserRouter>
+      <Suspense fallback={<div aria-label="Carregando página">Carregando...</div>}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="*" element={<Index />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
