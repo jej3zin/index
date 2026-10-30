@@ -1,0 +1,73 @@
+/* Fundo animado de partículas — página inicial */
+.index__wrapper {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(30, 64, 110, 0.22), transparent 58%),
+        linear-gradient(135deg, #070b14 0%, #0b1220 52%, #070b14 100%);
+}
+
+/* Camada de partículas: pequenos pontos com movimento contínuo */
+.index__wrapper::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -50%;
+    pointer-events: none;
+    opacity: 0.7;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(190, 220, 255, 0.85) 98%, transparent),
+        radial-gradient(1.5px 1.5px at 100px 80px, rgba(110, 170, 255, 0.8) 98%, transparent),
+        radial-gradient(2px 2px at 180px 150px, rgba(220, 235, 255, 0.7) 98%, transparent),
+        radial-gradient(1px 1px at 250px 40px, rgba(125, 190, 255, 0.75) 98%, transparent),
+        radial-gradient(1.5px 1.5px at 310px 210px, rgba(180, 210, 255, 0.75) 98%, transparent);
+    background-size: 340px 260px;
+    animation: index-particles-drift 38s linear infinite;
+}
+
+/* Brilhos difusos para dar profundidade ao fundo */
+.index__wrapper::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 18% 35%, rgba(36, 111, 190, 0.12), transparent 28%),
+        radial-gradient(circle at 82% 68%, rgba(75, 95, 190, 0.1), transparent 30%);
+    animation: index-glow-pulse 9s ease-in-out infinite alternate;
+}
+
+.ix__box {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes index-particles-drift {
+    from {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    to {
+        transform: translate3d(-170px, -130px, 0) rotate(8deg);
+    }
+}
+
+@keyframes index-glow-pulse {
+    from {
+        opacity: 0.55;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .index__wrapper::before,
+    .index__wrapper::after {
+        animation: none;
+    }
+}
